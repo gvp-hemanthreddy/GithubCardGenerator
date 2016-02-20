@@ -16,7 +16,7 @@
 
 <body class="container">
   <script id="cardsListTemplate" type="text/x-handlebars-template">
-    {{#each this}}
+    {{#sortedEach this}}
     <div class="col-md-3">
       <div class="thumbnail">
         <button type="button" onclick='deleteUser({{@index}})' class="close deleteUser" data-dismiss="alert" aria-label="Close">
@@ -39,7 +39,7 @@
         </div>
       </div>
     </div>
-    {{/each}}
+    {{/sortedEach}}
   </script>
   <div id="addCardContent" class="form-inline">
     <input id="githubUser" type="text" class="form-control" placeholder="github login">
@@ -47,9 +47,9 @@
   </div>
   <div id="sortByContent">
     <span>Sort by: </span>
-    <a href="#">Name</a>
-    <a href="#">Location</a>
-    <a href="#">Followers</a>
+    <a href="#" onclick="sortBy(1)">Name</a>
+    <a href="#" onclick="sortBy(2)">Location</a>
+    <a href="#" onclick="sortBy(3)">Followers</a>
   </div>
   <div id="cardsList">
   </div>
