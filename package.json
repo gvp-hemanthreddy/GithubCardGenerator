@@ -1,0 +1,26 @@
+{
+  "name": "githubcardgenerator",
+  "version": "1.0.0",
+  "description": "Create cards for Github user profiles",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gvp-hemanthreddy/GithubCardGenerator.git"
+  },
+  "keywords": [
+    "Github",
+    "cards"
+  ],
+  "author": "Hemanth Reddy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gvp-hemanthreddy/GithubCardGenerator/issues"
+  },
+  "homepage": "https://github.com/gvp-hemanthreddy/GithubCardGenerator",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}

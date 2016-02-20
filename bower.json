@@ -1,6 +1,8 @@
 {
   "name": "Github Cards",
   "dependencies": {
-    "handlebars": "~4.0.5"
+    "handlebars": "~4.0.5",
+    "jQuery": "~2.2.0",
+    "bootstrap": "^3.3.6"
   }
 }
