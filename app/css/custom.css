@@ -1,0 +1,28 @@
+#addCardContent {
+    margin-top: 4%;
+    padding-bottom: 2%;
+    border-bottom: 1px solid #ddd;
+}
+#sortByContent {
+    margin-top: 2%;
+    margin-bottom: 3%;
+}
+.arrow-up {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid black;
+}
+.arrow-down {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #f00;
+}
+.deleteUser {
+    position: absolute;
+    right: 30px;
+    top: 10px;
+}
