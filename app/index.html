@@ -19,37 +19,48 @@
     {{#sortedEach this}}
     <div class="col-md-3">
       <div class="thumbnail">
-        <button type="button" onclick='deleteUser({{@index}})' class="close deleteUser" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <img src={{avatar_url}} alt="avatar_url">
-        <div class="caption">
-          <h3>
+        <a href={{html_url}}>
+          <button type="button" onclick='deleteUser({{index}})' class="close deleteUser" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <img src={{avatar_url}} alt="avatar_url">
+          <div class="caption">
+            <h3>
             <b>{{name}}</b>
           </h3>
-          <p>
-            <span>
+            <p>
+              <span>
               <b>Location:</b> {{location}}
             </span>
-            <br/>
-            <span>
+              <br/>
+              <span>
               <b>Followers:</b> {{followers}}
             </span>
-          </p>
-        </div>
+            </p>
+          </div>
+        </a>
       </div>
     </div>
     {{/sortedEach}}
   </script>
+  <div id="errorMessage" class="alert alert-danger" style="display:none;" role="alert">
+    Error occured please check console.
+  </div>
   <div id="addCardContent" class="form-inline">
     <input id="githubUser" type="text" class="form-control" placeholder="github login">
     <button id="addCard" class="btn btn-primary">Add</button>
   </div>
   <div id="sortByContent">
     <span>Sort by: </span>
-    <a href="#" onclick="sortBy(1)">Name</a>
-    <a href="#" onclick="sortBy(2)">Location</a>
-    <a href="#" onclick="sortBy(3)">Followers</a>
+    <a href="#" onclick="sortBy(1)">Name
+        <span id="sortByNameCaret" class="caret-reversed"></span>
+      </a>
+    <a href="#" onclick="sortBy(2)">Location
+        <span id="sortByLocationCaret"></span>
+      </a>
+    <a href="#" onclick="sortBy(3)">Followers
+        <span id="sortByFollowersCaret"></span>
+      </a>
   </div>
   <div id="cardsList">
   </div>

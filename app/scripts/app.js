@@ -13,6 +13,7 @@ $(function() {
 			contextSorted.reverse();
 		}
 		for (i = 0, len = contextSorted.length; i < len; ++i) {
+			contextSorted[i].index = i;
 			output += options.fn(contextSorted[i]);
 		}
 		return output;
@@ -24,10 +25,14 @@ $(function() {
 
 	var cardsListContent = $('#cardsList');
 	var githubUser = $('#githubUser');
+	var sortByNameCaret = $('#sortByNameCaret');
+	var sortByLocationCaret = $('#sortByLocationCaret');
+	var sortByFollowersCaret = $('#sortByFollowersCaret');
 	var cardsList = [];
 	// Start
 	successCallback({
 		'avatar_url': 'https://avatars.githubusercontent.com/u/4524705?v=3',
+		'html_url': 'https://github.com/gvp-hemanthreddy',
 		'name': 'Hemanth Reddy',
 		'location': 'India',
 		'followers': 123
@@ -41,6 +46,7 @@ $(function() {
 	function successCallback(data) {
 		cardsList.push({
 			'avatar_url': data.avatar_url,
+			'html_url': data.html_url,
 			'name': data.name,
 			'location': data.location,
 			'followers': data.followers
@@ -50,7 +56,7 @@ $(function() {
 	}
 
 	function errorCallback(xhr, statusText) {
-		alert('Error occured.');
+		$('#errorMessage').show();
 	}
 
 	function getUserData(userName) {
@@ -61,16 +67,31 @@ $(function() {
 		});
 	}
 
+
+	$("#githubUser").bind("keypress", {}, keypressInBox);
+
+	function keypressInBox(e) {
+		var code = (e.keyCode ? e.keyCode : e.which);
+		//Enter keycode
+		if (code == 13) {
+			e.preventDefault();
+			$("#addCard").click();
+		}
+	};
+
 	$('#addCard').click(function() {
 		var inputText = githubUser.val();
 		if (inputText) {
 			getUserData(inputText);
+			$('#errorMessage').hide();
 		}
 	});
 
 	deleteUser = function(index) {
-		cardsList.splice(index, 1);
-		updateView();
+		if (index > -1) {
+			cardsList.splice(index, 1);
+			updateView();
+		}
 	};
 
 	function getSortKeyName(type) {
@@ -84,14 +105,34 @@ $(function() {
 		}
 	}
 
+	function removeAllSortKeysClasses() {
+		sortByNameCaret.removeClass();
+		sortByLocationCaret.removeClass();
+		sortByFollowersCaret.removeClass();
+	}
+
+	// Add caret or caret-reversed class.
+	function addCaretClass(sortKey) {
+		var className = isReverseSort ? 'caret' : 'caret-reversed';
+		if (sortKey === 'name') {
+			sortByNameCaret.addClass(className);
+		} else if (sortKey === 'location') {
+			sortByLocationCaret.addClass(className);
+		} else {
+			sortByFollowersCaret.addClass(className);
+		}
+	}
+
 	sortBy = function(type) {
 		var newSortKey = getSortKeyName(type);
+		removeAllSortKeysClasses();
 		if (newSortKey !== sortkey) {
 			isReverseSort = false;
 			sortkey = newSortKey;
 		} else {
 			isReverseSort = !isReverseSort;
 		}
+		addCaretClass(newSortKey);
 		updateView();
 	};
 });
