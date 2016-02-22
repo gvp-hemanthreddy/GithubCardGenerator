@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/gvp-hemanthreddy/GithubCardGenerator",
   "dependencies": {
+    "bower": "^1.7.7",
     "express": "^4.13.4"
   }
 }
